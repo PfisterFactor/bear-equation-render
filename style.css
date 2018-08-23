@@ -1,0 +1,41 @@
+#math-input {
+    position: absolute;
+    top:0;
+    bottom:50%;
+    right:0;
+    left:0;
+    width: 100%;
+    font-size: 18px;
+    white-space: nowrap;
+    scroll-behavior: initial;
+    text-align: center;
+    
+}
+#render-output {
+    position: absolute;
+    top: 50%;
+    bottom:50;
+    right:0;
+    left:0;
+    width:100%;
+    font-size: 18px;
+    text-align: center;
+}
+#export-button {
+    position: absolute;
+    bottom:5%;
+    height: 7%;
+    left:5%;
+}
+#note-id {
+    position: absolute;
+    bottom:5%;
+    height:5%;
+    right:5%;
+}
+#note-id-title {
+    position: absolute;
+    bottom: 1%;
+    height: 5%;
+    right:41%
+}
