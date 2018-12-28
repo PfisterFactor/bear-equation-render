@@ -1,27 +1,10 @@
 <!DOCTYPE HTML>
 <head>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/latest.js?config=AM_CHTML"></script>
+        <script type="text/javascript" async src="MathJax/MathJax.js?config=TeX-MML-AM_CHTML"></script>
         <script src="html2canvas.min.js"></script>
         <script src="bear_export.js"></script>
         <link rel="stylesheet" type="text/css" href="style.css">
-        <script>
-                window.MathJax = {
-                        "fast-preview": {
-                                   disabled: true
-                        },
-                        AuthorInit: function() {
-                            MathJax.Hub.Register.StartupHook('End', function() {
-                                MathJax.Hub.processSectionDelay = 0
-                                var demoSource = document.getElementById('math-input')
-                                var demoRendering = document.getElementById('render-output')
-                                var math = MathJax.Hub.getAllJax('render-output')[0]
-                                demoSource.addEventListener('input', function() {
-                                    MathJax.Hub.Queue(['Text', math, demoSource.value])
-                                })
-                            })
-                        }
-                    }
-            </script>
+        <script src="mathjax_render.js"></script>
 </head>
 <body>
     <textarea id="math-input" autofocus=true></textarea>
