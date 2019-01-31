@@ -4,28 +4,38 @@
     bottom:50%;
     right:0;
     left:0;
+    height:50%;
     width: 100%;
     font-size: 18px;
-    white-space: nowrap;
     scroll-behavior: initial;
     text-align: center;
     
 }
 #render-output {
-    position: absolute;
-    top: 50%;
-    bottom:50;
-    right:0;
-    left:0;
-    width:100%;
-    font-size: 18px;
-    text-align: center;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    top: 50vh;
+    max-height: 37vh;
 }
+textarea {
+    resize: none;
+    outline: none;
+}
+
 #export-button {
     position: absolute;
     bottom:5%;
     height: 7%;
     left:5%;
+}
+#error-state-display {
+    position:absolute;
+    visibility: hidden;
+    bottom:8%;
+    height:5%;
+    right: 5%;
+    color:red;
 }
 #note-id {
     position: absolute;

@@ -1,22 +1,51 @@
 const {app, BrowserWindow, Menu, ipcMain} = require("electron")
+var mjAPI = require("mathjax-node");
+mjAPI.start();
 
+var win = null
 function createWindow() {
     // Create browser window
-    win = new BrowserWindow({width:400,height:300,resizable:false})
-    
+    win = new BrowserWindow({width:400,height:300,resizable:true,title:"Equation Renderer for Bear <3"})
     win.loadFile("index.html")
     win.on("close", () => {
         win=null
     })
 }
-ipcMain.on("async",(event,arg) => {
-    let win2 = new BrowserWindow({width:0,height:0,transparent:true, frame:false});
+ipcMain.on("exportClicked",(event,arg) => {
+    let win2 = new BrowserWindow({width:0,height:0,transparent:false, frame:true});
     win2.loadURL(arg);
     setTimeout(() => {
         win2.close()
         win.show()
-    },100)
+    },500)
 
+})
+var isErroring = false
+var errorTimer = null
+function startErrorState() {
+    if (isErroring) return;
+
+    errorTimer = setInterval(function() {
+        mjAPI.start()
+    },500);
+}
+function stopErrorState() {
+    if (!isErroring || errorTimer == null) return;
+    clearInterval(errorTimer)
+}
+ipcMain.on("textChanged",function(event,data) {
+    try {
+        mjAPI.typeset({svg:true,format:"AsciiMath",linebreaks:true,width:45,timeout:1000,math:data},function(math_rendered) {
+            event.sender.send("textChangedReply",math_rendered);
+            stopErrorState();
+        });
+    }
+    catch (e) {
+        win.webContents.send("error","Error state!");
+        startErrorState();
+    }
+    
+    
 })
 app.on("ready",() => {
     var template = [{

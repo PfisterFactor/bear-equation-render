@@ -1,30 +1,14 @@
 <!DOCTYPE HTML>
 <head>
-        <script type="text/javascript" async src="MathJax/MathJax.js?config=TeX-MML-AM_CHTML"></script>
         <script src="html2canvas.min.js"></script>
-        <script src="bear_export.js"></script>
+        <script src="renderer.js"></script>
         <link rel="stylesheet" type="text/css" href="style.css">
-        <script src="mathjax_render.js"></script>
 </head>
 <body>
-    <textarea id="math-input" autofocus=true></textarea>
-    <div id="render-output">
-            <span class="MathJax_Preview" style=""></span>
-            <span id="MathJax-Element-1-Frame" class="mjx-chtml MathJax_CHTML" tabindex="0" style="font-size: 117%; position: relative;" data-mathml="<math xmlns=&quot;http://www.w3.org/1998/Math/MathML&quot;><mstyle displaystyle=&quot;true&quot;><mo></mo></mstyle></math>" role="presentation">
-                <span id="MJXc-Node-1412" class="mjx-math" aria-hidden="true">
-                    <span id="MJXc-Node-1413" class="mjx-mrow"><span id="MJXc-Node-1414" class="mjx-mstyle">
-                        <span id="MJXc-Node-1415" class="mjx-mrow">
-                            <span id="MJXc-Node-1416" class="mjx-mo"></span>
-                        </span>
-                    </span>
-                </span>
-            </span>
-            <span class="MJX_Assistive_MathML" role="presentation">
-                <math xmlns="http://www.w3.org/1998/Math/MathML">
-                    <mstyle displaystyle="true"><mo></mo></mstyle></math></span></span><script type="math/asciimath" id="MathJax-Element-1"></script>
-		
-    </div>
+    <textarea id="math-input" autofocus=true oninput="onTextInput()" wrap="hard"></textarea>
+    <div id="render-output"></div>
     <button id="export-button" onclick="onExportButtonClicked()">Export to Bear</button>
-    <p id="note-id-title">Note ID:</p>
-    <textarea id="note-id"></textarea>
+    <p id="error-state-display">Math Rendering Error</p>
+    <label id="note-id-title" for="note-id">Note ID:</label>
+    <textarea id="note-id" wrap="hard"></textarea>
 </body>
