@@ -10,3 +10,7 @@ Its very simple, and uses ASCIIMath formatting, which is good enough for most of
 A limitation is it needs to be connected to the internet to render. I could probably fix this but I wanted to throw it together fast. I'll probably fix it in the future and update this.
 
 I don't know if I'll add LaTeX support yet.
+
+# Known Bugs / Limitations
+
+- There is an issue with the Node.js mathjax backend that crashes the rendering engine when "(sqrt)" is typed (or variations thereof). Hopefully they'll release a fix, so I don't have to do a hacky workaround. Just restart the program if this occurs.
