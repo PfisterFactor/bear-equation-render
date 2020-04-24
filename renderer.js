@@ -4,6 +4,11 @@ function onTextInput() {
     let math_text = document.getElementById("math-input").value
     let math_rendered = ipcRenderer.send("textChanged",math_text);  
 }
+
+ipcRenderer.on("updateFormat", function(event) {
+    onTextInput()
+})
+
 function disableTyping(key) {
     if( key.keyCode >= 37 && key.keyCode <= 40 ) {
         return; // arrow keys
