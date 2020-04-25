@@ -2,6 +2,8 @@ const {app, BrowserWindow, Menu, ipcMain} = require("electron")
 var mjAPI = require("mathjax-node");
 mjAPI.start();
 
+var math_format = "AsciiMath"
+
 var win = null
 function createWindow() {
     // Create browser window
@@ -35,7 +37,7 @@ function stopErrorState() {
 }
 ipcMain.on("textChanged",function(event,data) {
     try {
-        mjAPI.typeset({svg:true,format:"AsciiMath",linebreaks:true,width:45,timeout:1000,math:data},function(math_rendered) {
+        mjAPI.typeset({svg:true,format:math_format,linebreaks:true,width:45,timeout:1000,math:data},function(math_rendered) {
             event.sender.send("textChangedReply",math_rendered);
             stopErrorState();
         });
@@ -44,8 +46,6 @@ ipcMain.on("textChanged",function(event,data) {
         win.webContents.send("error","Error state!");
         startErrorState();
     }
-    
-    
 })
 app.on("ready",() => {
     var template = [{
@@ -60,6 +60,13 @@ app.on("ready",() => {
             { label: "Undo", accelerator: "CmdOrCtrl+Z", selector: "undo:" },
             { label: "Redo", accelerator: "Shift+CmdOrCtrl+Z", selector: "redo:" },
             { type: "separator" },
+            { label: "Select Format",
+                submenu: [
+                    {label: "AsciiMath", accelerator: "CmdOrCtrl+Shift+A", click: function() { setTypsetFormat("AsciiMath") }},
+                    {label: "LaTeX", accelerator: "CmdOrCtrl+Shift+L", click: function() { setTypsetFormat("TeX") }},
+                    {label: "MathML", accelerator: "CmdOrCtrl+Shift+M", click: function() { setTypsetFormat("MathML") }}
+                ]},
+            { type: "separator" },
             { label: "Cut", accelerator: "CmdOrCtrl+X", selector: "cut:" },
             { label: "Copy", accelerator: "CmdOrCtrl+C", selector: "copy:" },
             { label: "Paste", accelerator: "CmdOrCtrl+V", selector: "paste:" },
@@ -71,6 +78,11 @@ app.on("ready",() => {
     
     createWindow()
 })
+
+function setTypsetFormat(format) {
+    math_format = format;
+    win.webContents.send("updateFormat");
+}
 
 // Quit when all windows are closed.
 app.on('window-all-closed', () => {
