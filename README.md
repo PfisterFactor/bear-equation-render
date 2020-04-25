@@ -7,9 +7,7 @@ So I developed this electron app (built for MacOS) that renders a math equation 
 
 Its very simple, and uses ASCIIMath formatting, which is good enough for most of (my) uses. Just type in the equation (according to the MathASCII format) and it'll render in real time and show you the output. When your finished with your equation, fill in the note's unique ID (right click the note in Bear's menu and click "Copy Note's Identifier" and paste it in the box), press "Export to Bear" and it'll append an image of the equation to the bottom of the note. You can then drag it wherever you want in the note.
 
-A limitation is it needs to be connected to the internet to render. I could probably fix this but I wanted to throw it together fast. I'll probably fix it in the future and update this.
-
-I don't know if I'll add LaTeX support yet.
+<s>I don't know if I'll add LaTeX support yet.</s> Implemented, thank you @MattBurn!
 
 # Known Bugs / Limitations
 
