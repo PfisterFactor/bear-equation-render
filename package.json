@@ -10,7 +10,7 @@
   "author": "Eric Pfister",
   "license": "MIT",
   "devDependencies": {
-    "electron": "^2.0.8"
+    "electron": "^7.2.4"
   },
   "dependencies": {
     "mathjax-node": "^2.1.1"
